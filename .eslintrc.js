@@ -20,6 +20,7 @@ module.exports = {
   },
   plugins: ['react', 'jsx-a11y', '@typescript-eslint'],
   rules: {
+    camelcase: 'off',
     'no-undef': 'off',
     'no-use-before-define': 'off',
     'no-unused-vars': 'warn',
