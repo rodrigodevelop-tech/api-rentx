@@ -2,7 +2,7 @@ import { inject, injectable } from 'tsyringe';
 import { IUsersRepository } from '../../repositories/IUsersRepository';
 import { sign } from 'jsonwebtoken';
 import { compare } from 'bcryptjs';
-import { AppError } from '../../../../errors/AppError';
+import { AppError } from '../../../../shared/errors/AppError';
 
 interface IRequest {
   email: string;
@@ -38,14 +38,14 @@ class AuthenticateUserUseCase {
     }
 
     const token = sign({}, 'b65bce1059c747307dc0146629265456', {
-      subject: user.id,
+      subject: String(user.id),
       expiresIn: '1d',
     });
 
     const tokenReturn: IResponse = {
       user: {
         name: user.name,
-        email,
+        email: user.email,
       },
       token,
     };
