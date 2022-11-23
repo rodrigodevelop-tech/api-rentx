@@ -68,17 +68,6 @@ class CarsRepositoryInMemory implements ICarsRepository {
     const findIndex = this.cars.findIndex((car) => car.id === car_id);
 
     this.cars[findIndex].available = available;
-
-    // this.cars.map((car, index) => {
-    //   if (index === findIndex) {
-    //     return {
-    //       ...car,
-    //       available,
-    //     };
-    //   }
-
-    //   return car;
-    // });
   }
 }
 
