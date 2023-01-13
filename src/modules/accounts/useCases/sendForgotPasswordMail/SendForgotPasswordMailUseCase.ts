@@ -21,7 +21,7 @@ class SendForgotPasswordMailUseCase {
     private dateProvider: IDateProvider,
     @inject('EtherealMailProvider')
     private mailProvider: IMailProvider,
-  ) {}
+  ) { }
 
   async execute(email: string) {
     const user = await this.usersRepository.findByEmail(email);
@@ -36,7 +36,7 @@ class SendForgotPasswordMailUseCase {
     );
 
     if (!user) {
-      throw new AppError('User does not exists');
+      throw new AppError('User does not exists!');
     }
 
     const token = uuid();

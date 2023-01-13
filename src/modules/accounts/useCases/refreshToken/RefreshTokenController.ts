@@ -1,6 +1,6 @@
 import { container } from 'tsyringe';
 import { Request, Response } from 'express';
-import { RefreshTokenUseCase } from './refreshTokenUseCase';
+import { RefreshTokenUseCase } from './RefreshTokenUseCase';
 
 class RefreshTokenController {
   async handle(request: Request, response: Response) {

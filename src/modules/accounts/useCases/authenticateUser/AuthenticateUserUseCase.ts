@@ -43,13 +43,13 @@ class AuthenticateUserUseCase {
     } = auth;
 
     if (!user) {
-      throw new AppError('Email or password incorrect');
+      throw new AppError('Email or password incorrect', 401);
     }
 
     const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
-      throw new AppError('Email or password incorrect');
+      throw new AppError('Email or password incorrect', 401);
     }
 
     const token = sign({}, secret_token, {
@@ -63,7 +63,7 @@ class AuthenticateUserUseCase {
       },
       secret_refresh_token,
       {
-        subject: user.id,
+        subject: String(user.id),
         expiresIn: expires_in_refresh_token,
       },
     );

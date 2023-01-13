@@ -2,6 +2,7 @@ import 'reflect-metadata';
 import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 import swaggerUi from 'swagger-ui-express';
+import cors from 'cors';
 
 import '../../container';
 import createConnection from '../typeorm';
@@ -10,7 +11,9 @@ import { AppError } from '../../errors/AppError';
 import swaggerFile from '../../../swagger.json';
 
 createConnection();
-export const app = express();
+const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 
@@ -30,3 +33,5 @@ app.use((err: Error, request: Request, response: Response, next: NextFunction) =
     message: `Internal server error -${err.message}`,
   });
 });
+
+export { app };
